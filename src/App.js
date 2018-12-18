@@ -54,36 +54,29 @@ class App extends Component {
       return this.state.timerState;
   }
 
-  setNextPomodoroState = () => {
-      let nextState;
+  getPomodoroState = (sessionNumber) => {
+      // let nextState;
+      console.log(sessionNumber)
       switch(true) {
-          case this.state.sessionNumber % 2 !== 0:
-              nextState = PomodoroState.Focus;
-              break;
-          case this.state.sessionNumber % 6 === 0:
-              nextState = PomodoroState.LongBreak;
-              break;
-          case this.state.sessionNumber % 2 === 0:
-              nextState = PomodoroState.ShortBreak;
-              break;
+          case sessionNumber % 2 !== 0:
+              return PomodoroState.Focus;
+          case sessionNumber % 6 === 0:
+              return PomodoroState.LongBreak;
+          case sessionNumber % 2 === 0:
+              return PomodoroState.ShortBreak;
           default:
-              // do nothing
+              throw new Error('Unknown Pomodoro State');
       }
-      this.setState({
-          'pomodoroState': nextState
-      })
-  }
-
-  incrementSessionNumber = () => {
-      this.setState(prevState => {
-          return {sessionNumber: prevState.sessionNumber + 1}
-      })
   }
 
   onTimerComplete = () => {
       this.timerState = TimerState.Paused;
-      this.incrementSessionNumber();
-      this.setNextPomodoroState();
+      const incrementedState = this.state.sessionNumber + 1;
+      const nextPomodoroState = this.getPomodoroState(incrementedState);
+      this.setState({
+          "sessionNumber": incrementedState,
+          "pomodoroState": nextPomodoroState
+      })
   }
 
   get sessionName() {
