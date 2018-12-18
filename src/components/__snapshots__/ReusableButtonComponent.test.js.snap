@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Component with text and is disabled false 1`] = `
+<button
+  disabled={false}
+>
+  Button Text
+</button>
+`;
+
+exports[`Button Component with text and is disabled true 1`] = `
+<button
+  disabled={true}
+>
+  Button Text
+</button>
+`;

@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import Timer from "./Timer";
-import TimerInput from "./TimerComponent";
-import StartButton from "./StartButton";
 import BreakLengthConfigurationComponent from "./components/BreakLengthConfigurationComponent";
 import "./App.css";
 import SessionLengthConfigurationComponent from "./components/SessionLengthConfigurationComponent";
@@ -77,15 +74,6 @@ class App extends Component {
         <div className="row">
           <div className="col-md-4" />
           <div className="col-md-4">
-            <TimerInput
-              value={this.state.value}
-              handleChange={this.handleChange}
-            />
-            <Timer value={this.state.value} seconds={this.state.seconds} />
-            <StartButton
-              startCountDown={this.startCountDown}
-              value={this.state.value}
-            />
             <ReusableButtonComponent
               label={"Start"}
               isDisabled={this.isStartButtonDisabled}
