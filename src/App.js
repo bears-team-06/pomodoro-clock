@@ -25,7 +25,7 @@ class App extends Component {
               console.log('Start running');
               break;
           case TimerState.Stopped:
-              console.log('Start Running');
+               console.log('Stop Running');
               break;
           case TimerState.Paused:
               console.log('Pause timer');
