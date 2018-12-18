@@ -3,6 +3,7 @@ import BreakLengthConfigurationComponent from "./components/BreakLengthConfigura
 import "./App.css";
 import SessionLengthConfigurationComponent from "./components/SessionLengthConfigurationComponent";
 import ReusableButtonComponent from "./components/ReusableButtonComponent";
+import TimerBox from "./components/TimerBox";
 
 const TimerState = {
   Stopped: 0,
@@ -10,11 +11,22 @@ const TimerState = {
   Paused: 2
 };
 
+const PomodoroState = {
+    Focus: 0,
+    ShortBreak: 1,
+    LongBreak: 2
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        timerState: TimerState.Stopped
+        timerState: TimerState.Stopped,
+        pomodoroState: PomodoroState.Focus,
+        focusTime: 1500,
+        shortBreakTime: 300,
+        longBreakTime: 900,
+        sessionNumber: 1
     };
   }
 
@@ -41,6 +53,66 @@ class App extends Component {
   get timerState() {
       return this.state.timerState;
   }
+
+  setNextPomodoroState = () => {
+      let nextState;
+      switch(true) {
+          case this.state.sessionNumber % 2 !== 0:
+              nextState = PomodoroState.Focus;
+              break;
+          case this.state.sessionNumber % 6 === 0:
+              nextState = PomodoroState.LongBreak;
+              break;
+          case this.state.sessionNumber % 2 === 0:
+              nextState = PomodoroState.ShortBreak;
+              break;
+          default:
+              // do nothing
+      }
+      this.setState({
+          'pomodoroState': nextState
+      })
+  }
+
+  incrementSessionNumber = () => {
+      this.setState(prevState => {
+          return {sessionNumber: prevState.sessionNumber + 1}
+      })
+  }
+
+  onTimerComplete = () => {
+      this.timerState = TimerState.Paused;
+      this.incrementSessionNumber();
+      this.setNextPomodoroState();
+  }
+
+  get sessionName() {
+      const currentPomodoro = this.state.pomodoroState;
+      switch (currentPomodoro) {
+          case PomodoroState.Focus:
+              return "Focus";
+          case PomodoroState.ShortBreak:
+              return "Short Break";
+          case PomodoroState.LongBreak:
+              return "Long Break";
+          default:
+              return ""
+      }
+  }
+
+    get sessionTime() {
+        const currentPomodoro = this.state.pomodoroState;
+        switch (currentPomodoro) {
+            case PomodoroState.Focus:
+                return this.state.focusTime;
+            case PomodoroState.ShortBreak:
+                return this.state.shortBreakTime;
+            case PomodoroState.LongBreak:
+                return this.state.longBreakTime;
+            default:
+                return 0;
+        }
+    }
 
   get isStartButtonDisabled() {
     return false;
@@ -72,7 +144,9 @@ class App extends Component {
         <BreakLengthConfigurationComponent />
         <SessionLengthConfigurationComponent />
         <div className="row">
-          <div className="col-md-4" />
+          <div className="col-md-4">
+              <TimerBox sessionName={this.sessionName} sessionTime={this.sessionTime} onTimerComplete={this.onTimerComplete}/>
+          </div>
           <div className="col-md-4">
             <ReusableButtonComponent
               label={"Start"}
