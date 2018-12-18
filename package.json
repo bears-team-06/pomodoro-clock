@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "babel-jest": "^23.6.0",
+    "enzyme-to-json": "^3.3.5",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-scripts": "2.1.1"
@@ -15,7 +17,14 @@
   },
   "eslintConfig": {
     "extends": "react-app",
-    "plugins": ["jest"]
+    "plugins": [
+      "jest"
+    ]
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   },
   "browserslist": [
     ">0.2%",
