@@ -8,25 +8,27 @@ class ReusableTimeConfigurationComponent extends Component {
         }
     }
 
-    handleChange = () => {
-        const currentTime = this.state.time + this.props.minimumChange;
+    handleChange = (positive) => {
+        const currentTime = positive ? this.state.time + this.props.minimumChange : this.state.time - this.props.minimumChange;
         const minutes = Math.floor(currentTime / 60);
         this.props.handleChange(minutes);
-        console.log(minutes)
+        console.log(minutes);
     }
 
      onIncrementButtonClick = () => {
         this.setState(prevState => {
             return {time: prevState.time + this.props.minimumChange}
         });
-        this.handleChange();
+        const positive = true;
+        this.handleChange(positive);
     };
 
     onDecrementButtonClick = () => {
         this.setState(prevState => {
             return {time: prevState.time - this.props.minimumChange}
         });
-        this.handleChange();
+        const positive = false;
+        this.handleChange(positive);
     };
 
     get incrementButtonDisabled() {
