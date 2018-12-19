@@ -14,8 +14,16 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        timerState: TimerState.Stopped
+        timerState: TimerState.Stopped,
+        time: ''
     };
+    this.changeTime = this.changeTime.bind(this);
+  }
+
+  changeTime(newTime) {
+    this.setState({
+      time: newTime
+    });
   }
 
   set timerState(state) {
@@ -69,8 +77,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <BreakLengthConfigurationComponent />
-        <SessionLengthConfigurationComponent />
+        <BreakLengthConfigurationComponent handleChange={this.changeTime}/>
+        <SessionLengthConfigurationComponent handleChange={this.changeTime}/>
         <div className="row">
           <div className="col-md-4" />
           <div className="col-md-4">
@@ -89,6 +97,9 @@ class App extends Component {
               isDisabled={this.isStopButtonDisabled}
               clickHandler={this.stopButtonClickHandler}
             />
+            <div>
+                Display time for tests: {this.state.time}
+            </div>
           </div>
         </div>
       </div>
