@@ -11,7 +11,14 @@ class SessionLengthConfigurationComponent extends Component {
 
     render() {
         return (
-            <ReusableTimeConfigurationComponent labelName='Session Length' startValue={1500} minimumChange={300} maximumBreakLength={7200} minimumBreakLength={600} />
+            <ReusableTimeConfigurationComponent 
+                labelName='Session Length' 
+                startValue={1500} 
+                minimumChange={300} 
+                maximumBreakLength={7200} 
+                minimumBreakLength={600}
+                handleChange={this.props.handleChange} 
+            />
         );
     }
 }

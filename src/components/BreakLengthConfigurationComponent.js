@@ -11,7 +11,14 @@ class BreakLengthConfigurationComponent extends Component {
 
     render() {
         return (
-            <ReusableTimeConfigurationComponent labelName='Break Length' startValue={300} minimumChange={60} maximumBreakLength={3600} minimumBreakLength={60} />
+            <ReusableTimeConfigurationComponent 
+                labelName='Break Length' 
+                startValue={300} 
+                minimumChange={60} 
+                maximumBreakLength={3600} 
+                minimumBreakLength={60} 
+                handleChange={this.props.handleChange} 
+            />
         );
     }
 }

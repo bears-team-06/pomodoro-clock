@@ -26,9 +26,25 @@ class App extends Component {
         focusTime: 1500,
         shortBreakTime: 300,
         longBreakTime: 900,
-        sessionNumber: 1
+        sessionNumber: 1,
     };
+    this.changeSessionTime = this.changeSessionTime.bind(this);
+    this.changeBreakTime = this.changeBreakTime.bind(this);
   }
+
+  changeSessionTime(newTime) {
+    this.setState({
+        focusTime: newTime*60,
+    });
+  }
+
+  changeBreakTime(newTime) {
+    this.setState({
+        shortBreakTime: newTime*60,
+    });
+  }
+
+  
 
   set timerState(state) {
       // this is the place to decide what to do with timers
@@ -134,8 +150,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <BreakLengthConfigurationComponent />
-        <SessionLengthConfigurationComponent />
+        <BreakLengthConfigurationComponent handleChange={this.changeBreakTime}/>
+        <SessionLengthConfigurationComponent handleChange={this.changeSessionTime}/>
         <div className="row">
           <div className="col-md-4">
               <TimerBox sessionName={this.sessionName} sessionTime={this.sessionTime} onTimerComplete={this.onTimerComplete}/>
