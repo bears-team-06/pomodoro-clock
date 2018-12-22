@@ -1,19 +1,17 @@
-import React, { Component } from 'react';
+import React from "react";
 import ReusableTimeConfigurationComponent from "./ReusableTimeConfigurationComponent";
 
-class BreakLengthConfigurationComponent extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            'break-length': 300 // this value could be communicated to parent
-        }
-    }
-
-    render() {
-        return (
-            <ReusableTimeConfigurationComponent labelName='Break Length' startValue={300} minimumChange={60} maximumBreakLength={3600} minimumBreakLength={60} />
-        );
-    }
+function BreakLengthConfigurationComponent(props) {
+  return (
+    <ReusableTimeConfigurationComponent
+      labelName="Break Length"
+      timeLength={props.time}
+      minimumChange={60}
+      maximumBreakLength={3600}
+      minimumBreakLength={60}
+      onChange={props.onShortBreakTimeChange}
+    />
+  );
 }
 
 export default BreakLengthConfigurationComponent;

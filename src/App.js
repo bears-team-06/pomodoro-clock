@@ -12,27 +12,29 @@ const PomodoroState = {
     LongBreak: 2
 };
 
+const defaultStates = {
+    timerState: TimerState.Stopped,
+    pomodoroState: PomodoroState.Focus,
+    focusTime: 1500,
+    shortBreakTime: 600,
+    longBreakTime: 900,
+    sessionNumber: 1
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-        timerState: TimerState.Stopped,
-        pomodoroState: PomodoroState.Focus,
-        focusTime: 1500,
-        shortBreakTime: 300,
-        longBreakTime: 900,
-        sessionNumber: 1
-    };
+    this.state = defaultStates;
   }
 
-  set timerState(state) { // do we even need this property here, it does not do anything other than set/get other property?
+  set timerState(state) {
       // this is the place to decide what to do with timers
       switch (state) {
           case TimerState.Running:
               console.log('Start running');
               break;
           case TimerState.Stopped:
-               console.log('Stop Running');
+               console.log('Stop Running'); // reset session to 1
               break;
           case TimerState.Paused:
               console.log('Pause timer');
@@ -103,7 +105,7 @@ class App extends Component {
     }
 
   get isStartButtonDisabled() {
-    return false;
+    return this.state.timerState === TimerState.Running
   }
 
   startButtonClickHandler = () => {
@@ -111,25 +113,31 @@ class App extends Component {
   }
 
   get isPauseButtonDisabled() {
-    return false;
+    return this.state.timerState !== TimerState.Running || this.state.timerState === TimerState.Stopped;
   }
 
   pauseButtonClickHandler = () => {
     this.timerState = TimerState.Paused;
   }
 
-  get isStopButtonDisabled() {
-    return false;
+  get isResetButtonDisabled() {
+      return false
   }
 
-  stopButtonClickHandler = () => {
-      this.timerState = TimerState.Stopped;
+  resetButtonClickHandler = () => {
+      this.setState(defaultStates)
+  }
+
+  onShortBreakTimeChange = (newValue) => {
+      this.setState({
+          shortBreakTime: newValue
+      })
   }
 
   render() {
     return (
       <div>
-        <BreakLengthConfigurationComponent />
+        <BreakLengthConfigurationComponent time={this.state.shortBreakTime} onShortBreakTimeChange={this.onShortBreakTimeChange}/>
         <SessionLengthConfigurationComponent />
         <div className="row">
           <div className="col-md-4">
@@ -147,9 +155,9 @@ class App extends Component {
               clickHandler={this.pauseButtonClickHandler}
             />
             <ReusableButtonComponent
-              label={"Stop"}
-              isDisabled={this.isStopButtonDisabled}
-              clickHandler={this.stopButtonClickHandler}
+              label={"Reset"}
+              isDisabled={this.isResetButtonDisabled}
+              clickHandler={this.resetButtonClickHandler}
             />
           </div>
         </div>
