@@ -4,12 +4,7 @@ import "./App.css";
 import SessionLengthConfigurationComponent from "./components/SessionLengthConfigurationComponent";
 import ReusableButtonComponent from "./components/ReusableButtonComponent";
 import TimerBox from "./components/TimerBox";
-
-const TimerState = {
-  Stopped: 0,
-  Running: 1,
-  Paused: 2
-};
+import TimerState from "./TimerState"
 
 const PomodoroState = {
     Focus: 0,
@@ -30,7 +25,7 @@ class App extends Component {
     };
   }
 
-  set timerState(state) {
+  set timerState(state) { // do we even need this property here, it does not do anything other than set/get other property?
       // this is the place to decide what to do with timers
       switch (state) {
           case TimerState.Running:
@@ -138,7 +133,7 @@ class App extends Component {
         <SessionLengthConfigurationComponent />
         <div className="row">
           <div className="col-md-4">
-              <TimerBox sessionName={this.sessionName} sessionTime={this.sessionTime} onTimerComplete={this.onTimerComplete}/>
+              <TimerBox sessionName={this.sessionName} sessionTime={this.sessionTime} timerState={this.state.timerState} onTimerComplete={this.onTimerComplete}/>
           </div>
           <div className="col-md-4">
             <ReusableButtonComponent
