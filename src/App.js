@@ -131,11 +131,11 @@ class App extends Component {
       <div>
         <BreakLengthConfigurationComponent />
         <SessionLengthConfigurationComponent />
-        <div className="row">
-          <div className="col-md-4">
+        <div>
+          <div>
               <TimerBox sessionName={this.sessionName} sessionTime={this.sessionTime} timerState={this.state.timerState} onTimerComplete={this.onTimerComplete}/>
           </div>
-          <div className="col-md-4">
+          <div>
             <ReusableButtonComponent
               label={"Start"}
               isDisabled={this.isStartButtonDisabled}

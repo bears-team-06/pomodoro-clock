@@ -30,16 +30,16 @@ class ReusableTimeConfigurationComponent extends Component {
 
     get timeString() {
         let minutes = Math.floor(this.state.time / 60);
-        return minutes > 9 ? minutes : ` ${minutes}`
+        return minutes > 9 ? minutes : `${minutes}`
     }
 
     render() {
         return (
             <div>
                 <span id={'label'}>{this.props.labelName}</span>
-                <span><button id='decrement' onClick={this.onDecrementButtonClick} disabled={this.decrementButtonDisabled}>-</button></span>
+                <span><button id='decrement' className={'rounded-button'} onClick={this.onDecrementButtonClick} disabled={this.decrementButtonDisabled}><span>-</span></button></span>
                 <span><span id={'time'}>{this.timeString}</span></span>
-                <span><button id='increment' onClick={this.onIncrementButtonClick} disabled={this.incrementButtonDisabled}>+</button></span>
+                <span><button id='increment' className={'rounded-button'} onClick={this.onIncrementButtonClick} disabled={this.incrementButtonDisabled}><span>+</span></button></span>
             </div>
         );
     }
