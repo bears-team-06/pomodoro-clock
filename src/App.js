@@ -27,7 +27,7 @@ class App extends Component {
     this.state = defaultStates;
   }
 
-  set timerState(state) {
+  set timerState(state) { // do we even need this property here, it does not do anything other than set/get other property?
       // this is the place to decide what to do with timers
       switch (state) {
           case TimerState.Running:
