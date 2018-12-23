@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial Black", "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 24px;
+}
+
+html, body, #root {
+  height: 100%;
+}
+body {
+  margin: 0;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.main-body {
+  height: 100%;
+  width: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.main-body .row {
+  display: flex;
+  width: 100%;
+}
+
+.row.session-configuration {
+  justify-content: space-around;
+}
+
+.row.timer-box {
+  justify-content: center;
+}
+
+.row.button-container {
+  justify-content: space-around;
+}
+
+.rounded-button {
+  box-sizing: content-box;
+  width: 27px;
+  height: 27px;
+  border-radius: 100%;
+  font-size: 27px;
+  border-width: 3px;
+  line-height: 27px;
+  padding: 0px;
+}
+
+button.timer-button {
+  width: 100px;
+  height: 36px;
+  font-size: 27px;
+  box-sizing: content-box;
+  font-family: "Arial Black", "Segoe UI", "Roboto", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
+  border-radius: 10px;
+  border-width: 3px;
+}
+
+.rounded-button span {
+  vertical-align: center;
+}
