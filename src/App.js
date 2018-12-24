@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import BreakLengthConfigurationComponent from "./components/BreakLengthConfigurationComponent";
+import ReusableTimeConfigurationComponent from "./components/ReusableTimeConfigurationComponent";
 import "./App.css";
-import SessionLengthConfigurationComponent from "./components/SessionLengthConfigurationComponent";
 import ReusableButtonComponent from "./components/ReusableButtonComponent";
 import TimerBox from "./components/TimerBox";
 import TimerState from "./TimerState"
@@ -134,11 +133,31 @@ class App extends Component {
       })
   }
 
+  onSessionTimeChange = (newValue) => {
+    this.setState({
+      focusTime: newValue
+    })
+}
+
   render() {
     return (
       <div>
-        <BreakLengthConfigurationComponent time={this.state.shortBreakTime} onShortBreakTimeChange={this.onShortBreakTimeChange}/>
-        <SessionLengthConfigurationComponent />
+        <ReusableTimeConfigurationComponent 
+          labelName="Break Length"
+          timeLength={this.state.shortBreakTime} 
+          onChange={this.onShortBreakTimeChange}
+          minimumChange={60}
+          maximumLength={3600}
+          minimumLength={60}
+        />
+        <ReusableTimeConfigurationComponent 
+          labelName='Session Length'
+          timeLength={this.state.focusTime} 
+          onChange={this.onSessionTimeChange} 
+          minimumChange={300} 
+          maximumLength={7200} 
+          minimumLength={600} 
+        />
         <div className="row">
           <div className="col-md-4">
               <TimerBox sessionName={this.sessionName} sessionTime={this.sessionTime} timerState={this.state.timerState} onTimerComplete={this.onTimerComplete}/>
