@@ -181,8 +181,8 @@ class App extends Component {
           />
           <ReusableButtonComponent
             label={"Stop"}
-            isDisabled={this.isStopButtonDisabled}
-            clickHandler={this.stopButtonClickHandler}
+            isDisabled={this.isResetButtonDisabled}
+            clickHandler={this.resetButtonClickHandler}
           />
         </div>
       </div>
