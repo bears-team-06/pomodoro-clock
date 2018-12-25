@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import ReusableTimeConfigurationComponent from "./components/ReusableTimeConfigurationComponent";
-import "./App.css";
 import ReusableButtonComponent from "./components/ReusableButtonComponent";
 import TimerBox from "./components/TimerBox";
-import TimerState from "./TimerState"
+import TimerState from "./TimerState";
 
 const PomodoroState = {
-    Focus: 0,
-    ShortBreak: 1,
-    LongBreak: 2
+  Focus: 0,
+  ShortBreak: 1,
+  LongBreak: 2
 };
 
 const defaultStates = {
@@ -47,69 +46,69 @@ class App extends Component {
   }
 
   get timerState() {
-      return this.state.timerState;
+    return this.state.timerState;
   }
 
-  getPomodoroState = (sessionNumber) => {
-      // let nextState;
-      console.log(sessionNumber)
-      switch(true) {
-          case sessionNumber % 2 !== 0:
-              return PomodoroState.Focus;
-          case sessionNumber % 6 === 0:
-              return PomodoroState.LongBreak;
-          case sessionNumber % 2 === 0:
-              return PomodoroState.ShortBreak;
-          default:
-              throw new Error('Unknown Pomodoro State');
-      }
-  }
+  getPomodoroState = sessionNumber => {
+    // let nextState;
+    console.log(sessionNumber);
+    switch (true) {
+      case sessionNumber % 2 !== 0:
+        return PomodoroState.Focus;
+      case sessionNumber % 6 === 0:
+        return PomodoroState.LongBreak;
+      case sessionNumber % 2 === 0:
+        return PomodoroState.ShortBreak;
+      default:
+        throw new Error("Unknown Pomodoro State");
+    }
+  };
 
   onTimerComplete = () => {
-      this.timerState = TimerState.Paused;
-      const incrementedState = this.state.sessionNumber + 1;
-      const nextPomodoroState = this.getPomodoroState(incrementedState);
-      this.setState({
-          "sessionNumber": incrementedState,
-          "pomodoroState": nextPomodoroState
-      })
-  }
+    this.timerState = TimerState.Paused;
+    const incrementedState = this.state.sessionNumber + 1;
+    const nextPomodoroState = this.getPomodoroState(incrementedState);
+    this.setState({
+      sessionNumber: incrementedState,
+      pomodoroState: nextPomodoroState
+    });
+  };
 
   get sessionName() {
-      const currentPomodoro = this.state.pomodoroState;
-      switch (currentPomodoro) {
-          case PomodoroState.Focus:
-              return "Focus";
-          case PomodoroState.ShortBreak:
-              return "Short Break";
-          case PomodoroState.LongBreak:
-              return "Long Break";
-          default:
-              return ""
-      }
+    const currentPomodoro = this.state.pomodoroState;
+    switch (currentPomodoro) {
+      case PomodoroState.Focus:
+        return "Focus";
+      case PomodoroState.ShortBreak:
+        return "Short Break";
+      case PomodoroState.LongBreak:
+        return "Long Break";
+      default:
+        return "";
+    }
   }
 
-    get sessionTime() {
-        const currentPomodoro = this.state.pomodoroState;
-        switch (currentPomodoro) {
-            case PomodoroState.Focus:
-                return this.state.focusTime;
-            case PomodoroState.ShortBreak:
-                return this.state.shortBreakTime;
-            case PomodoroState.LongBreak:
-                return this.state.longBreakTime;
-            default:
-                return 0;
-        }
+  get sessionTime() {
+    const currentPomodoro = this.state.pomodoroState;
+    switch (currentPomodoro) {
+      case PomodoroState.Focus:
+        return this.state.focusTime;
+      case PomodoroState.ShortBreak:
+        return this.state.shortBreakTime;
+      case PomodoroState.LongBreak:
+        return this.state.longBreakTime;
+      default:
+        return 0;
     }
+  }
 
   get isStartButtonDisabled() {
     return this.state.timerState === TimerState.Running
   }
 
   startButtonClickHandler = () => {
-    this.timerState = TimerState.Running
-  }
+    this.timerState = TimerState.Running;
+  };
 
   get isPauseButtonDisabled() {
     return this.state.timerState !== TimerState.Running || this.state.timerState === TimerState.Stopped;
@@ -117,7 +116,7 @@ class App extends Component {
 
   pauseButtonClickHandler = () => {
     this.timerState = TimerState.Paused;
-  }
+  };
 
   get isResetButtonDisabled() {
       return false
@@ -183,7 +182,23 @@ class App extends Component {
               isDisabled={this.isResetButtonDisabled}
               clickHandler={this.resetButtonClickHandler}
             />
-          </div>
+        </div>
+        <div className={"row button-container"}>
+          <ReusableButtonComponent
+            label={"Start"}
+            isDisabled={this.isStartButtonDisabled}
+            clickHandler={this.startButtonClickHandler}
+          />
+          <ReusableButtonComponent
+            label={"Pause"}
+            isDisabled={this.isPauseButtonDisabled}
+            clickHandler={this.pauseButtonClickHandler}
+          />
+          <ReusableButtonComponent
+            label={"Stop"}
+            isDisabled={this.isStopButtonDisabled}
+            clickHandler={this.stopButtonClickHandler}
+          />
         </div>
       </div>
     );

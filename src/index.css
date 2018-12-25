@@ -1,14 +1,100 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  font-family: "Roboto", "Arial Black", "Segoe UI", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 24px;
+  background: #ECC5C4;
+  color: #ffffff;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+html, body, #root {
+  height: 100%;
+}
+
+.main-body {
+  height: 100vh;
+  width: 75vw;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.main-body .row {
+  display: flex;
+  width: 100%;
+}
+
+/* Time Configurations */
+.row.time-configuration {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
+}
+.row.time-configuration span {
+  margin: 0 5px;
+}
+
+/* Timer Box */
+.row.timer-box {
+  justify-content: center;
+}
+.row.timer-box div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  align-items: center;
+}
+#timer-box-name {
+  font-size: 1.4em;
+}
+#timer-box-time {
+  font-size: 2.5em;
+  letter-spacing: 3px;
+  border: #ffffff 3px solid;
+  border-radius: 25px;
+  padding: 15px 25px;
+}
+
+/* Button Container */
+.row.button-container {
+  justify-content: space-evenly;
+}
+
+
+/* Buttons */
+.btn {
+  box-sizing: content-box;
+  font-size: 1.1em;
+  border: #ffffff 1px solid;
+  background: #ECC5C4;
+  color: #ffffff;
+}
+.btn:hover {
+  border: #ECC5C4 1px solid;
+  background: #ffffff;
+  color: #ECC5C4;
+}
+
+.rounded-button {
+  width: 27px;
+  height: 27px;
+  border-radius: 100%;
+  font-size: 27px;
+  line-height: 27px;
+  padding: 0px;
+}
+
+button.timer-button {
+  width: 100px;
+  height: 36px;
+  border-radius: 10px;
+}
+
+.rounded-button span {
+  vertical-align: center;
 }

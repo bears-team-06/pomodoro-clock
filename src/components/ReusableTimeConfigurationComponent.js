@@ -25,11 +25,22 @@ class ReusableTimeConfigurationComponent extends Component {
 
     render() {
         return (
-            <div>
-                <span id={'label'}>{this.props.labelName}</span>
-                <span><button id='decrement' onClick={this.onDecrementButtonClick} disabled={this.decrementButtonDisabled}>-</button></span>
-                <span><span id={'time'}>{this.timeString}</span></span>
-                <span><button id='increment' onClick={this.onIncrementButtonClick} disabled={this.incrementButtonDisabled}>+</button></span>
+            <div className={'length-configuration'}>
+                <span className={'label'}>{this.props.labelName}</span>
+                
+                <button className={'decrement btn rounded-button'} 
+                        onClick={this.onDecrementButtonClick} 
+                        disabled={this.decrementButtonDisabled}>
+                    <span>-</span>
+                </button>
+                                
+                <span className={'time'}>{this.timeString}</span>
+                
+                <button className={'decrement btn rounded-button'} 
+                        onClick={this.onIncrementButtonClick} 
+                        disabled={this.incrementButtonDisabled}>
+                    <span>+</span>
+                </button>
             </div>
         );
     }
