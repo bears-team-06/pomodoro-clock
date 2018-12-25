@@ -8,7 +8,7 @@ class TimerBox extends Component {
         }
         const hasStateChangedToPause = this.state.timerState === TimerState.Running && newProps.timerState === TimerState.Paused
         const hasStateChangedToStopped = this.state.timerState !== TimerState.Stopped && newProps.timerState === TimerState.Stopped
-        const hasSessionTimeChanged = this.props.sessionTime !== newProps.sessionTime && this.props.sessionName !== newProps.sessionName
+        const hasSessionTimeChanged = this.props.sessionTime !== newProps.sessionTime 
         if(hasStateChangedToPause || hasStateChangedToStopped) {
             this.stopTimer()
         }
@@ -25,8 +25,8 @@ class TimerBox extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            timeInSeconds: props.sessionTime,
-            timerState: props.timerState
+            timeInSeconds: this.props.sessionTime,
+            timerState: this.props.timerState
         };
         this.timer = null
     }
