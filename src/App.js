@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import BreakLengthConfigurationComponent from "./components/BreakLengthConfigurationComponent";
-import "./App.css";
 import SessionLengthConfigurationComponent from "./components/SessionLengthConfigurationComponent";
 import ReusableButtonComponent from "./components/ReusableButtonComponent";
 import TimerBox from "./components/TimerBox";
@@ -130,7 +129,7 @@ class App extends Component {
   render() {
     return (
       <div className={"main-body"}>
-        <div className={"row session-configuration"}>
+        <div className={"row time-configuration"}>
           <BreakLengthConfigurationComponent />
           <SessionLengthConfigurationComponent />
         </div>

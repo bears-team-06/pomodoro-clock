@@ -62,8 +62,8 @@ class TimerBox extends Component {
     render() {
         return (
             <div>
-                <span>{this.props.sessionName}</span>
-                <span>{`${this.minutes}:${this.seconds}`}</span>
+                <span id="timer-box-name">{this.props.sessionName}</span>
+                <span id="timer-box-time">{`${this.minutes} : ${this.seconds}`}</span>
             </div>
         );
     }
