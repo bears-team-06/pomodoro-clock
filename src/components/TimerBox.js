@@ -25,8 +25,8 @@ class TimerBox extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            timeInSeconds: this.props.sessionTime,
-            timerState: this.props.timerState
+            timeInSeconds: props.sessionTime,
+            timerState: props.timerState
         };
         this.timer = null
     }
