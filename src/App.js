@@ -140,47 +140,32 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <ReusableTimeConfigurationComponent 
-          labelName="Break Length"
-          timeLength={this.state.shortBreakTime} 
-          onChange={this.onShortBreakTimeChange}
-          minimumChange={60}
-          maximumLength={3600}
-          minimumLength={60}
-        />
-        <ReusableTimeConfigurationComponent 
-          labelName='Session Length'
-          timeLength={this.state.focusTime} 
-          onChange={this.onSessionTimeChange} 
-          minimumChange={300} 
-          maximumLength={7200} 
-          minimumLength={600} 
-        />
-        <div className="row">
-          <div className="col-md-4">
-              <TimerBox 
-                sessionName={this.sessionName} 
-                sessionTime={this.sessionTime} 
-                timerState={this.state.timerState} 
-                onTimerComplete={this.onTimerComplete}
-              />
-          </div>
-          <div className="col-md-4">
-            <ReusableButtonComponent
-              label={"Start"}
-              isDisabled={this.isStartButtonDisabled}
-              clickHandler={this.startButtonClickHandler}
-            />
-            <ReusableButtonComponent
-              label={"Pause"}
-              isDisabled={this.isPauseButtonDisabled}
-              clickHandler={this.pauseButtonClickHandler}
-            />
-            <ReusableButtonComponent
-              label={"Reset"}
-              isDisabled={this.isResetButtonDisabled}
-              clickHandler={this.resetButtonClickHandler}
+
+      <div className={"main-body"}>
+        <div className={"row time-configuration"}>
+          <ReusableTimeConfigurationComponent 
+            labelName="Break Length"
+            timeLength={this.state.shortBreakTime} 
+            onChange={this.onShortBreakTimeChange}
+            minimumChange={60}
+            maximumLength={3600}
+            minimumLength={60}
+          />
+          <ReusableTimeConfigurationComponent 
+            labelName='Session Length'
+            timeLength={this.state.focusTime} 
+            onChange={this.onSessionTimeChange} 
+            minimumChange={300} 
+            maximumLength={7200} 
+            minimumLength={600} 
+          />
+        </div>
+        <div className={"row timer-box"}>
+            <TimerBox
+              sessionName={this.sessionName}
+              sessionTime={this.sessionTime}
+              timerState={this.state.timerState}
+              onTimerComplete={this.onTimerComplete}
             />
         </div>
         <div className={"row button-container"}>
