@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import BreakLengthConfigurationComponent from "./components/BreakLengthConfigurationComponent";
-import SessionLengthConfigurationComponent from "./components/SessionLengthConfigurationComponent";
+import ReusableTimeConfigurationComponent from "./components/ReusableTimeConfigurationComponent";
 import ReusableButtonComponent from "./components/ReusableButtonComponent";
 import TimerBox from "./components/TimerBox";
 import TimerState from "./TimerState";
@@ -11,38 +10,39 @@ const PomodoroState = {
   LongBreak: 2
 };
 
+const defaultStates = {
+    timerState: TimerState.Stopped,
+    pomodoroState: PomodoroState.Focus,
+    focusTime: 1500,
+    shortBreakTime: 600,
+    longBreakTime: 900,
+    sessionNumber: 1
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      timerState: TimerState.Stopped,
-      pomodoroState: PomodoroState.Focus,
-      focusTime: 1500,
-      shortBreakTime: 300,
-      longBreakTime: 900,
-      sessionNumber: 1
-    };
+    this.state = defaultStates;
   }
 
-  set timerState(state) {
-    // do we even need this property here, it does not do anything other than set/get other property?
-    // this is the place to decide what to do with timers
-    switch (state) {
-      case TimerState.Running:
-        console.log("Start running");
-        break;
-      case TimerState.Stopped:
-        console.log("Stop Running");
-        break;
-      case TimerState.Paused:
-        console.log("Pause timer");
-        break;
-      default:
-        throw new Error("Where did you get this state?");
-    }
-    this.setState({
-      timerState: state
-    });
+  set timerState(state) { // do we even need this property here, it does not do anything other than set/get other property?
+      // this is the place to decide what to do with timers
+      switch (state) {
+          case TimerState.Running:
+              console.log('Start running');
+              break;
+          case TimerState.Stopped:
+               console.log('Stop Running'); // reset session to 1
+              break;
+          case TimerState.Paused:
+              console.log('Pause timer');
+              break;
+          default:
+              throw new Error('Where did you get this state?')
+      }
+      this.setState({
+          'timerState': state
+      });
   }
 
   get timerState() {
@@ -103,7 +103,7 @@ class App extends Component {
   }
 
   get isStartButtonDisabled() {
-    return false;
+    return this.state.timerState === TimerState.Running
   }
 
   startButtonClickHandler = () => {
@@ -111,34 +111,76 @@ class App extends Component {
   };
 
   get isPauseButtonDisabled() {
-    return false;
+    return this.state.timerState !== TimerState.Running || this.state.timerState === TimerState.Stopped;
   }
 
   pauseButtonClickHandler = () => {
     this.timerState = TimerState.Paused;
   };
 
-  get isStopButtonDisabled() {
-    return false;
+  get isResetButtonDisabled() {
+      return false
   }
 
-  stopButtonClickHandler = () => {
-    this.timerState = TimerState.Stopped;
-  };
+  resetButtonClickHandler = () => {
+      this.setState(defaultStates)
+  }
+
+  onShortBreakTimeChange = (newValue) => {
+      this.setState({
+          shortBreakTime: newValue
+      })
+  }
+
+  onSessionTimeChange = (newValue) => {
+    this.setState({
+      focusTime: newValue
+    })
+  }
 
   render() {
     return (
-      <div className={"main-body"}>
-        <div className={"row time-configuration"}>
-          <BreakLengthConfigurationComponent />
-          <SessionLengthConfigurationComponent />
-        </div>
-        <div className={"row timer-box"}>
-            <TimerBox
-              sessionName={this.sessionName}
-              sessionTime={this.sessionTime}
-              timerState={this.state.timerState}
-              onTimerComplete={this.onTimerComplete}
+      <div>
+        <ReusableTimeConfigurationComponent 
+          labelName="Break Length"
+          timeLength={this.state.shortBreakTime} 
+          onChange={this.onShortBreakTimeChange}
+          minimumChange={60}
+          maximumLength={3600}
+          minimumLength={60}
+        />
+        <ReusableTimeConfigurationComponent 
+          labelName='Session Length'
+          timeLength={this.state.focusTime} 
+          onChange={this.onSessionTimeChange} 
+          minimumChange={300} 
+          maximumLength={7200} 
+          minimumLength={600} 
+        />
+        <div className="row">
+          <div className="col-md-4">
+              <TimerBox 
+                sessionName={this.sessionName} 
+                sessionTime={this.sessionTime} 
+                timerState={this.state.timerState} 
+                onTimerComplete={this.onTimerComplete}
+              />
+          </div>
+          <div className="col-md-4">
+            <ReusableButtonComponent
+              label={"Start"}
+              isDisabled={this.isStartButtonDisabled}
+              clickHandler={this.startButtonClickHandler}
+            />
+            <ReusableButtonComponent
+              label={"Pause"}
+              isDisabled={this.isPauseButtonDisabled}
+              clickHandler={this.pauseButtonClickHandler}
+            />
+            <ReusableButtonComponent
+              label={"Reset"}
+              isDisabled={this.isResetButtonDisabled}
+              clickHandler={this.resetButtonClickHandler}
             />
         </div>
         <div className={"row button-container"}>

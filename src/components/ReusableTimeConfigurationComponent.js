@@ -1,36 +1,26 @@
 import React, { Component } from 'react';
 
 class ReusableTimeConfigurationComponent extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            time: this.props.startValue
-        }
-    }
 
     onIncrementButtonClick = () => {
-        this.setState(prevState => {
-            return {time: prevState.time + this.props.minimumChange}
-        })
+        this.props.onChange(this.props.timeLength + this.props.minimumChange)
     };
 
     onDecrementButtonClick = () => {
-        this.setState(prevState => {
-            return {time: prevState.time - this.props.minimumChange}
-        })
+        this.props.onChange(this.props.timeLength - this.props.minimumChange)
     };
 
     get incrementButtonDisabled() {
-        return this.state.time >= this.props.maximumBreakLength;
+        return this.props.timeLength >= this.props.maximumLength;
     }
 
     get decrementButtonDisabled() {
-        return this.state.time <= this.props.minimumBreakLength;
+        return this.props.timeLength <= this.props.minimumLength;
     }
 
     get timeString() {
-        let minutes = Math.floor(this.state.time / 60);
-        return minutes > 9 ? minutes : `${minutes}`
+        let minutes = Math.floor(this.props.timeLength / 60);
+        return minutes > 9 ? minutes : ` ${minutes}`
     }
 
     render() {
