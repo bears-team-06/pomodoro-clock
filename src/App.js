@@ -137,7 +137,7 @@ class App extends Component {
     this.setState({
       focusTime: newValue
     })
-}
+  }
 
   render() {
     return (
@@ -160,7 +160,12 @@ class App extends Component {
         />
         <div className="row">
           <div className="col-md-4">
-              <TimerBox sessionName={this.sessionName} sessionTime={this.sessionTime} timerState={this.state.timerState} onTimerComplete={this.onTimerComplete}/>
+              <TimerBox 
+                sessionName={this.sessionName} 
+                sessionTime={this.sessionTime} 
+                timerState={this.state.timerState} 
+                onTimerComplete={this.onTimerComplete}
+              />
           </div>
           <div className="col-md-4">
             <ReusableButtonComponent

@@ -55,7 +55,7 @@ class TimerBox extends Component {
             if (this.state.timeInSeconds === 0) {
                 this.onTimerComplete()
             } else {
-                this.setState((state, props) => ({
+                this.setState((state) => ({
                     timeInSeconds: state.timeInSeconds - 1
                 }));
             }
@@ -65,7 +65,7 @@ class TimerBox extends Component {
     render() {
         return (
             <div>
-                <span>{this.props.sessionName}</span>
+                <span>{this.props.sessionName} </span>
                 <span>{`${this.minutes}:${this.seconds}`}</span>
             </div>
         );
