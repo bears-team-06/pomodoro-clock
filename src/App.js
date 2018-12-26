@@ -150,6 +150,7 @@ class App extends Component {
             minimumChange={60}
             maximumLength={3600}
             minimumLength={60}
+            timerState={this.state.timerState}
           />
           <ReusableTimeConfigurationComponent 
             labelName='Session Length'
@@ -158,6 +159,7 @@ class App extends Component {
             minimumChange={300} 
             maximumLength={7200} 
             minimumLength={600} 
+            timerState={this.state.timerState}
           />
         </div>
         <div className={"row timer-box"}>
