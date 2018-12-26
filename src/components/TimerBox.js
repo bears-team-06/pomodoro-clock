@@ -48,6 +48,7 @@ class TimerBox extends Component {
     onTimerComplete() {
         this.stopTimer()
         this.props.onTimerComplete && this.props.onTimerComplete()
+        this.playAlarm();
     }
 
     startTicking = () => {
@@ -60,6 +61,11 @@ class TimerBox extends Component {
                 }));
             }
         }, 1000);
+    }
+
+    playAlarm() {
+        const alarm = new Audio('http://www.orangefreesounds.com/wp-content/uploads/2017/09/Clock-ringing.mp3');
+        alarm.play();
     }
 
     render() {
