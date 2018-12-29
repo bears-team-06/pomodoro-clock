@@ -2,6 +2,7 @@
 
 exports[`Button Component with text and is disabled false 1`] = `
 <button
+  className="btn timer-button"
   disabled={false}
 >
   Button Text
@@ -10,6 +11,7 @@ exports[`Button Component with text and is disabled false 1`] = `
 
 exports[`Button Component with text and is disabled true 1`] = `
 <button
+  className="btn timer-button"
   disabled={true}
 >
   Button Text

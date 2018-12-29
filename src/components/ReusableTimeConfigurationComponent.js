@@ -36,7 +36,7 @@ class ReusableTimeConfigurationComponent extends Component {
                                 
                 <span className={'time'}>{this.timeString}</span>
                 
-                <button className={'decrement btn rounded-button'} 
+                <button className={'increment btn rounded-button'}
                         onClick={this.onIncrementButtonClick} 
                         disabled={this.incrementButtonDisabled}>
                     <span>+</span>

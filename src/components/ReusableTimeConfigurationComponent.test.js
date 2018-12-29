@@ -27,11 +27,11 @@ describe("ReusableTimeConfigurationComponent", () => {
           minimumLength={60}
         />
       );
-      const label = wrapper.find("#label");
+      const label = wrapper.find(".label");
       expect(label.text()).toBe("Break Length");
-      expect(wrapper.find("#time").text().trim()).toBe("5");
-      expect(wrapper.find("#increment").prop("disabled")).toBe(false);
-      expect(wrapper.find("#decrement").prop("disabled")).toBe(false);
+      expect(wrapper.find(".time").text().trim()).toBe("5");
+      expect(wrapper.find(".increment").prop("disabled")).toBe(false);
+      expect(wrapper.find(".decrement").prop("disabled")).toBe(false);
     });
   });
 
@@ -52,7 +52,7 @@ describe("ReusableTimeConfigurationComponent", () => {
         />
       );
 
-      wrapper.find("#increment").simulate("click");
+      wrapper.find(".increment").simulate("click");
       expect(newTime).toBe(360);
     });
   });
@@ -73,7 +73,7 @@ describe("ReusableTimeConfigurationComponent", () => {
           onChange={onChange}
         />
       );
-      wrapper.find("#decrement").simulate("click");
+      wrapper.find(".decrement").simulate("click");
       expect(newTime).toBe(240);
     });
   });
@@ -92,11 +92,11 @@ describe("ReusableTimeConfigurationComponent", () => {
 
       expect(
         wrapper
-          .find("#time")
+          .find(".time")
           .text()
           .trim()
       ).toBe("7");
-      expect(wrapper.find("#increment").prop("disabled")).toBe(true);
+      expect(wrapper.find(".increment").prop("disabled")).toBe(true);
     });
   });
 
@@ -113,11 +113,11 @@ describe("ReusableTimeConfigurationComponent", () => {
       );
       expect(
         wrapper
-          .find("#time")
+          .find(".time")
           .text()
           .trim()
       ).toBe("1");
-      expect(wrapper.find("#decrement").prop("disabled")).toBe(true);
+      expect(wrapper.find(".decrement").prop("disabled")).toBe(true);
     });
   });
 
@@ -132,8 +132,8 @@ describe("ReusableTimeConfigurationComponent", () => {
           minimumLength={60}
         />
       );
-      expect(wrapper.find("#increment").prop("disabled")).toBe(false);
-      expect(wrapper.find("#decrement").prop("disabled")).toBe(false);
+      expect(wrapper.find(".increment").prop("disabled")).toBe(false);
+      expect(wrapper.find(".decrement").prop("disabled")).toBe(false);
     });
   });
 });
