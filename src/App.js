@@ -18,7 +18,7 @@ const alarm = new Alarm('http://www.orangefreesounds.com/wp-content/uploads/2017
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = defaultStates;
+    this.state = DefaultStates;
     this.alarm = alarm;
   }
 
