@@ -131,6 +131,9 @@ class App extends Component {
   get isResetButtonDisabled() {
       return false
   }
+  get isRoundedButtonDisabled() {
+    return (this.state.timerState === TimerState.Running);
+  }
 
   resetButtonClickHandler = () => {
       this.setState(defaultStates)
@@ -160,7 +163,7 @@ class App extends Component {
             minimumChange={60}
             maximumLength={3600}
             minimumLength={60}
-            timerState={this.state.timerState}
+            isDisabled={this.isRoundedButtonDisabled}
           />
           <ReusableTimeConfigurationComponent 
             labelName='Session Length'
@@ -169,7 +172,7 @@ class App extends Component {
             minimumChange={300} 
             maximumLength={7200} 
             minimumLength={600} 
-            timerState={this.state.timerState}
+            isDisabled={this.isRoundedButtonDisabled}
           />
         </div>
         <div className={"row timer-box"}>

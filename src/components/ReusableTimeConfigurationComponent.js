@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import TimerState from "../TimerState";
 
 class ReusableTimeConfigurationComponent extends Component {
 
@@ -12,11 +11,11 @@ class ReusableTimeConfigurationComponent extends Component {
     };
 
     get incrementButtonDisabled() {
-        return (this.props.timeLength >= this.props.maximumLength || this.props.timerState === TimerState.Running);
+        return (this.props.timeLength >= this.props.maximumLength || this.props.isDisabled);
     }
 
     get decrementButtonDisabled() {
-        return (this.props.timeLength <= this.props.minimumLength || this.props.timerState === TimerState.Running);
+        return (this.props.timeLength <= this.props.minimumLength || this.props.isDisabled);
     }
 
     get timeString() {
