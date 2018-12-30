@@ -64,8 +64,14 @@ class TimerBox extends Component {
     }
 
     playAlarm() {
-        const alarm = new Audio('http://www.orangefreesounds.com/wp-content/uploads/2017/09/Clock-ringing.mp3');
-        alarm.play();
+        const playPromise = this.props.alarm.playSound();
+        if (playPromise !== undefined) {
+            playPromise.then(function() {
+                console.log('Alarm audio playback started.');
+            }).catch(function(error) {
+                console.log(`Alarm audio playback error: ${error.message}`);
+            });
+        }
     }
 
     render() {

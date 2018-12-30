@@ -19,10 +19,20 @@ const defaultStates = {
     sessionNumber: 1
 }
 
+class Alarm {
+  constructor(src) {
+    this.sound = new Audio(src)
+  }
+  playSound() {
+    return this.sound.play();
+  }
+}
+const alarm = new Alarm('http://www.orangefreesounds.com/wp-content/uploads/2017/10/Twin-bell-alarm-clock-ringing-short.mp3');
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = defaultStates;
+    this.alarm = alarm;
   }
 
   set timerState(state) { // do we even need this property here, it does not do anything other than set/get other property?
@@ -168,6 +178,7 @@ class App extends Component {
               sessionTime={this.sessionTime}
               timerState={this.state.timerState}
               onTimerComplete={this.onTimerComplete}
+              alarm={this.alarm}
             />
         </div>
         <div className={"row button-container"}>
