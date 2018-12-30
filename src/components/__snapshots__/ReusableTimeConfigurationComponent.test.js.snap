@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReusableTimeConfigurationComponent when given certain properties matches snapshot 1`] = `
+<div
+  className="length-configuration"
+>
+  <span
+    className="label"
+  >
+    Break Length
+  </span>
+  <button
+    className="decrement btn rounded-button"
+    disabled={false}
+    onClick={[Function]}
+  >
+    <span>
+      -
+    </span>
+  </button>
+  <span
+    className="time"
+  >
+     5
+  </span>
+  <button
+    className="increment btn rounded-button"
+    disabled={false}
+    onClick={[Function]}
+  >
+    <span>
+      +
+    </span>
+  </button>
+</div>
+`;

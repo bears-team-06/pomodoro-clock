@@ -3,21 +3,8 @@ import ReusableTimeConfigurationComponent from "./components/ReusableTimeConfigu
 import ReusableButtonComponent from "./components/ReusableButtonComponent";
 import TimerBox from "./components/TimerBox";
 import TimerState from "./TimerState";
-
-const PomodoroState = {
-  Focus: 0,
-  ShortBreak: 1,
-  LongBreak: 2
-};
-
-const defaultStates = {
-    timerState: TimerState.Stopped,
-    pomodoroState: PomodoroState.Focus,
-    focusTime: 1500,
-    shortBreakTime: 600,
-    longBreakTime: 900,
-    sessionNumber: 1
-}
+import DefaultStates from "./DefaultState";
+import PomodoroState from "./PomodoroState";
 
 class Alarm {
   constructor(src) {
@@ -60,8 +47,6 @@ class App extends Component {
   }
 
   getPomodoroState = sessionNumber => {
-    // let nextState;
-    console.log(sessionNumber);
     switch (true) {
       case sessionNumber % 2 !== 0:
         return PomodoroState.Focus;
@@ -136,7 +121,7 @@ class App extends Component {
   }
 
   resetButtonClickHandler = () => {
-      this.setState(defaultStates)
+      this.setState(DefaultStates)
   }
 
   onShortBreakTimeChange = (newValue) => {
@@ -156,7 +141,8 @@ class App extends Component {
 
       <div className={"main-body"}>
         <div className={"row time-configuration"}>
-          <ReusableTimeConfigurationComponent 
+          <ReusableTimeConfigurationComponent
+            className = "Break-Length"
             labelName="Break Length"
             timeLength={this.state.shortBreakTime} 
             onChange={this.onShortBreakTimeChange}
@@ -167,6 +153,7 @@ class App extends Component {
           />
           <ReusableTimeConfigurationComponent 
             labelName='Session Length'
+            className = "Session-Length"
             timeLength={this.state.focusTime} 
             onChange={this.onSessionTimeChange} 
             minimumChange={300} 
@@ -186,16 +173,19 @@ class App extends Component {
         </div>
         <div className={"row button-container"}>
           <ReusableButtonComponent
+            className={"Start"}
             label={"Start"}
             isDisabled={this.isStartButtonDisabled}
             clickHandler={this.startButtonClickHandler}
           />
           <ReusableButtonComponent
+            className={"Pause"}
             label={"Pause"}
             isDisabled={this.isPauseButtonDisabled}
             clickHandler={this.pauseButtonClickHandler}
           />
           <ReusableButtonComponent
+            className={"Stop"}
             label={"Stop"}
             isDisabled={this.isResetButtonDisabled}
             clickHandler={this.resetButtonClickHandler}
