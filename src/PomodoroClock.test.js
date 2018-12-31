@@ -1,18 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import PomodoroClock from "./PomodoroClock";
 import { shallow } from "enzyme";
 import TimerState from "./TimerState";
 import DefaultStates from "./DefaultState";
 
 it("renders without crashing", () => {
   const div = document.createElement("div");
-  ReactDOM.render(<App />, div);
+  ReactDOM.render(<PomodoroClock />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
 
 it("updates break length value on calling onChange", () => {
-  const AppWrapper = shallow(<App />);
+  const AppWrapper = shallow(<PomodoroClock />);
   expect(getBreakLengthConfigurator(AppWrapper).prop("timeLength")).toBe(
     DefaultStates.shortBreakTime
   );
@@ -39,7 +39,7 @@ it("updates timer state to running on clicking start button", () => {
 });
 
 it("resets app states on clicking stop button", () => {
-  const AppWrapper = shallow(<App />);
+  const AppWrapper = shallow(<PomodoroClock />);
   expect(getTimerBox(AppWrapper).prop("timerState")).toBe(TimerState.Stopped);
 
   getBreakLengthConfigurator(AppWrapper)

@@ -20,7 +20,17 @@ html, body, #root {
   width: 75vw;
   margin: 0 auto;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 10%;
+}
+
+.about {
+  height: 100vh;
+  width: 75vw;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
   flex-direction: column;
 }
 
@@ -97,4 +107,28 @@ button.timer-button {
 
 .rounded-button span {
   vertical-align: center;
+}
+
+nav {
+  padding-left: 35%;
+  padding-right: 10%;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+nav ul li {
+  list-style: none;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.about a {
+  color: white;
 }
