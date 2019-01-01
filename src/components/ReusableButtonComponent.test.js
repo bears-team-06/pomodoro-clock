@@ -13,12 +13,9 @@ describe('Button Component', () => {
     });
 
     it('should callback on click handler', () => {
-        let clickHandlerCalled = false;
-        const clickHandler = () => {
-            clickHandlerCalled = true;
-        }
+        const clickHandler = jest.fn()
         const button = shallow(<ButtonComponent label={'Button Text'} isDisabled={false} clickHandler={clickHandler}/>);
         button.simulate('click')
-        expect(clickHandlerCalled).toBeTruthy()
+        expect(clickHandler).toHaveBeenCalledTimes(1)
     })
 });
