@@ -12,6 +12,7 @@ We also added enzyme to setup to get easy snapshot tests for each of the compone
 * [Create-react-app](https://github.com/facebook/create-react-app) - This helped in creating react app quickly. Only work was to remove extra code like for service workers.   
 
 ## Architecture
+![App Architecture](https://github.com/sharadJay/pomodoro-clock/blob/1b54b9798d171d11554900de7c2f42d59678b62a/assets/pomodoroArchitecture.jpeg "App Architecture")
 In our app there is single class i.e. Pomodoro clock which is aware of clock's state and is responsible of controlling and sending state as properties to other components like
 timerBox, buttons and time configuration buttons. Here is description of what each component does and it's relationship with other components
 ### PomodoroClock
