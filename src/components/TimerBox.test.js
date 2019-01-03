@@ -59,11 +59,13 @@ describe('Timer state', () => {
         const onTimerComplete = jest.fn()
         const timerBox = shallow(<TimerBox sessionTime={1} timerState={TimerState.Running} sessionName={"Short Break"} onTimerComplete={onTimerComplete}/>)
         expect(onTimerComplete).toHaveBeenCalledTimes(0)
+        const playAlarmSpy = jest.spyOn(timerBox.instance(), 'playAlarm');
         timerBox.instance().startTicking()
         jest.runAllTimers()
         expect(setInterval).toHaveBeenCalledTimes(1);
         expect(setInterval).toHaveBeenLastCalledWith(expect.any(Function), 1000);
         expect(onTimerComplete).toHaveBeenCalledTimes(1)
+        expect(playAlarmSpy).toHaveBeenCalledTimes(1)
     })
 
 })

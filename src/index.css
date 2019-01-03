@@ -89,6 +89,11 @@ html, body, #root {
   background: #ffffff;
   color: #ECC5C4;
 }
+.btn:disabled {
+  border: #bcb3b3 1px solid;
+  background: #bcb3b3;
+  color: #ffffff;
+}
 
 .rounded-button {
   width: 27px;

@@ -31,7 +31,15 @@ it("updates pomodoro state to short break on complete", () => {
 });
 
 it("updates timer state to paused on clicking pause button", () => {
-  expect(true).toBe(true);
+    const AppWrapper = shallow(<PomodoroClock />);
+    getStartButton(AppWrapper)
+        .props()
+        .clickHandler();
+    expect(getTimerBox(AppWrapper).prop("timerState")).toBe(TimerState.Running);
+    getPauseButton(AppWrapper)
+        .props()
+        .clickHandler();
+    expect(getTimerBox(AppWrapper).prop("timerState")).toBe(TimerState.Paused);
 });
 
 it("updates timer state to running on clicking start button", () => {

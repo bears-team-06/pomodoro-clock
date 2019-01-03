@@ -12,6 +12,7 @@ describe("ReusableTimeConfigurationComponent", () => {
           minimumChange={60}
           maximumLength={3600}
           minimumLength={60}
+          disabled={true}
         />
       );
       expect(timeConfigurationComponent).toMatchSnapshot();
@@ -25,6 +26,7 @@ describe("ReusableTimeConfigurationComponent", () => {
           minimumChange={60}
           maximumLength={3600}
           minimumLength={60}
+          isDisabled={false}
         />
       );
       const label = wrapper.find(".label");
@@ -124,6 +126,7 @@ describe("ReusableTimeConfigurationComponent", () => {
           minimumChange={60}
           maximumLength={360}
           minimumLength={60}
+          isDisabled={false}
         />
       );
       expect(wrapper.find(".increment").prop("disabled")).toBe(false);

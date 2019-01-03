@@ -6,10 +6,20 @@ import TimerState from "./TimerState";
 import DefaultStates from "./DefaultState";
 import PomodoroState from "./PomodoroState";
 
+class Alarm {
+    constructor(src) {
+        this.sound = new Audio(src)
+    }
+    playSound() {
+        return this.sound.play();
+    }
+}
+const alarm = new Alarm('http://www.orangefreesounds.com/wp-content/uploads/2017/10/Twin-bell-alarm-clock-ringing-short.mp3');
 class PomodoroClock extends Component {
     constructor(props) {
         super(props);
         this.state = DefaultStates;
+        this.alarm = alarm;
     }
 
     set timerState(state) {
@@ -86,6 +96,10 @@ class PomodoroClock extends Component {
         }
     }
 
+    get isTimerConfigurationDisabled() {
+        return (this.state.timerState === TimerState.Running);
+    }
+
     get isStartButtonDisabled() {
         return this.state.timerState === TimerState.Running
     }
@@ -135,6 +149,7 @@ class PomodoroClock extends Component {
                         minimumChange={60}
                         maximumLength={3600}
                         minimumLength={60}
+                        isDisabled={this.isTimerConfigurationDisabled}
                     />
                     <ReusableTimeConfigurationComponent
                         labelName='Session Length'
@@ -144,6 +159,7 @@ class PomodoroClock extends Component {
                         minimumChange={300}
                         maximumLength={7200}
                         minimumLength={600}
+                        isDisabled={this.isTimerConfigurationDisabled}
                     />
                 </div>
                 <div className={"row timer-box"}>
@@ -152,6 +168,7 @@ class PomodoroClock extends Component {
                         sessionTime={this.sessionTime}
                         timerState={this.state.timerState}
                         onTimerComplete={this.onTimerComplete}
+                        alarm={this.alarm}
                     />
                 </div>
                 <div className={"row button-container"}>

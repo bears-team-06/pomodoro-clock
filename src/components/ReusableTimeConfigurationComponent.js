@@ -11,11 +11,11 @@ class ReusableTimeConfigurationComponent extends Component {
     };
 
     get incrementButtonDisabled() {
-        return this.props.timeLength >= this.props.maximumLength;
+        return (this.props.timeLength >= this.props.maximumLength || this.props.isDisabled);
     }
 
     get decrementButtonDisabled() {
-        return this.props.timeLength <= this.props.minimumLength;
+        return (this.props.timeLength <= this.props.minimumLength || this.props.isDisabled);
     }
 
     get timeString() {
