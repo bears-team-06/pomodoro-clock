@@ -64,7 +64,7 @@ class TimerBox extends Component {
     }
 
     playAlarm() {
-        if(this.props.alarm != undefined) {
+        if(this.props.alarm !== undefined) {
             const playPromise = this.props.alarm.playSound();
             if (playPromise !== undefined) {
                 playPromise.then(function() {
