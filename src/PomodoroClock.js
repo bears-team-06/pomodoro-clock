@@ -14,7 +14,7 @@ class Alarm {
         return this.sound.play();
     }
 }
-
+const alarm = new Alarm('http://www.orangefreesounds.com/wp-content/uploads/2017/10/Twin-bell-alarm-clock-ringing-short.mp3');
 class PomodoroClock extends Component {
     constructor(props) {
         super(props);
