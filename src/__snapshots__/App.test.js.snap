@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches app snapshot 1`] = `
+<BrowserRouter>
+  <div>
+    <nav>
+      <ul>
+        <li>
+          <Link
+            replace={false}
+            to="/"
+          >
+            Pomodoro Clock
+          </Link>
+        </li>
+        <li>
+          <Link
+            replace={false}
+            to="/about/"
+          >
+            About
+          </Link>
+        </li>
+      </ul>
+    </nav>
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/"
+    />
+    <Route
+      component={[Function]}
+      path="/about/"
+    />
+  </div>
+</BrowserRouter>
+`;

@@ -37,10 +37,7 @@ describe("ReusableTimeConfigurationComponent", () => {
 
   describe("when pressing increment button", () => {
     it("on Change is called with incremented Value", () => {
-      let newTime = null;
-      let onChange = newValue => {
-        newTime = newValue;
-      };
+      let onChange = jest.fn()
       const wrapper = shallow(
         <ReusableTimeConfigurationComponent
           labelName="Break Length"
@@ -53,16 +50,13 @@ describe("ReusableTimeConfigurationComponent", () => {
       );
 
       wrapper.find(".increment").simulate("click");
-      expect(newTime).toBe(360);
+      expect(onChange).toHaveBeenLastCalledWith(360);
     });
   });
 
   describe("when pressing decrement button", () => {
     it("on Change is called with decremented value", () => {
-      let newTime = null;
-      let onChange = newValue => {
-        newTime = newValue;
-      };
+      let onChange = jest.fn()
       const wrapper = shallow(
         <ReusableTimeConfigurationComponent
           labelName="Break Length"
@@ -74,7 +68,7 @@ describe("ReusableTimeConfigurationComponent", () => {
         />
       );
       wrapper.find(".decrement").simulate("click");
-      expect(newTime).toBe(240);
+      expect(onChange).toHaveBeenLastCalledWith(240);
     });
   });
 

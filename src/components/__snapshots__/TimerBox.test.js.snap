@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Timer state renders snapshot 1`] = `
+<div>
+  <span
+    id="timer-box-name"
+  >
+    Short Break
+  </span>
+  <span
+    id="timer-box-time"
+  >
+    26 : 40
+  </span>
+</div>
+`;
