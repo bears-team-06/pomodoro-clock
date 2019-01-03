@@ -23,11 +23,19 @@ it("updates break length value on calling onChange", () => {
 });
 
 it("updates session length value on calling onChange", () => {
-  expect(true).toBe(true);
+  const AppWrapper = shallow(<PomodoroClock />);
+  expect(getSessionLengthConfigurator(AppWrapper).prop("timeLength")).toBe(
+    DefaultStates.focusTime
+  );
+  getSessionLengthConfigurator(AppWrapper).props().onChange(1800);
+  expect(getSessionLengthConfigurator(AppWrapper).prop("timeLength")).toBe(1800);
 });
 
 it("updates pomodoro state to short break on complete", () => {
-  expect(true).toBe(true);
+  const AppWrapper = shallow(<PomodoroClock />);
+  expect(getTimerBox(AppWrapper).prop("sessionName")).toBe("Focus");
+  getTimerBox(AppWrapper).props().onTimerComplete();
+  expect(getTimerBox(AppWrapper).prop("sessionName")).toBe("Short Break");
 });
 
 it("updates timer state to paused on clicking pause button", () => {
@@ -43,7 +51,11 @@ it("updates timer state to paused on clicking pause button", () => {
 });
 
 it("updates timer state to running on clicking start button", () => {
-  expect(true).toBe(true);
+  const AppWrapper = shallow(<PomodoroClock />);
+  getStartButton(AppWrapper)
+        .props()
+        .clickHandler();
+  expect(getTimerBox(AppWrapper).prop("timerState")).toBe(TimerState.Running);
 });
 
 it("resets app states on clicking stop button", () => {
