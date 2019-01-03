@@ -11,7 +11,6 @@ exports[`ReusableTimeConfigurationComponent when given certain properties matche
   </span>
   <button
     className="decrement btn rounded-button"
-    disabled={false}
     onClick={[Function]}
   >
     <span>
@@ -25,7 +24,6 @@ exports[`ReusableTimeConfigurationComponent when given certain properties matche
   </span>
   <button
     className="increment btn rounded-button"
-    disabled={false}
     onClick={[Function]}
   >
     <span>

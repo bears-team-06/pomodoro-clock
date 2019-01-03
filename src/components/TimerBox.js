@@ -47,8 +47,8 @@ class TimerBox extends Component {
 
     onTimerComplete() {
         this.stopTimer()
-        this.props.onTimerComplete && this.props.onTimerComplete()
         this.playAlarm();
+        this.props.onTimerComplete && this.props.onTimerComplete()
     }
 
     startTicking = () => {
@@ -64,13 +64,15 @@ class TimerBox extends Component {
     }
 
     playAlarm() {
-        const playPromise = this.props.alarm.playSound();
-        if (playPromise !== undefined) {
-            playPromise.then(function() {
-                console.log('Alarm audio playback started.');
-            }).catch(function(error) {
-                console.log(`Alarm audio playback error: ${error.message}`);
-            });
+        if(this.props.alarm != undefined) {
+            const playPromise = this.props.alarm.playSound();
+            if (playPromise !== undefined) {
+                playPromise.then(function() {
+                    console.log('Alarm audio playback started.');
+                }).catch(function(error) {
+                    console.log(`Alarm audio playback error: ${error.message}`);
+                });
+            }
         }
     }
 
